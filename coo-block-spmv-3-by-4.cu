@@ -195,9 +195,6 @@ int main() {
   std::vector<int> elements = readVectorFromFile<int>("elements.txt");
   std::vector<double> values =
       readVectorFromFile<double>("additionalHessianResults.txt");
-  // for (int i = 0; i < values.size(); i++) {
-  //   values[i] = 1.0;
-  // }
   int MATRIX_SIZE =
       *std::max_element(elements.begin(), elements.end()) * DIMENSION +
       DIMENSION;
@@ -270,12 +267,6 @@ int main() {
     cpuResult[row] += values[i] * h_x[col];
   }
 
-  // // check the first 10 results of cpuResult
-  // printf("Cpu first 10 result: \n");
-  // for (int i = 0; i < 10; i++) {
-  //   printf("%lf ", cpuResult[i]);
-  // }
-  // printf("\n");
 
   // Allocate and copy COO format data
   int *d_expanded_rows, *d_expanded_cols, *d_elements;
@@ -317,11 +308,6 @@ int main() {
   CHECK_CUDA(cudaMemcpy(h_y.data(), d_y_segment, MATRIX_SIZE * sizeof(double),
                         cudaMemcpyDeviceToHost));
 
-  // printf("GPU first 10 result: \n");
-  // for (int i = 0; i < 10; i++) {
-  //   printf("%lf ", h_y[i] / NUM_EXECUTION);
-  // }
-  // printf("\n");
 
   double error = 0.0;
   for (int i = 0; i < MATRIX_SIZE; i++) {
@@ -347,11 +333,6 @@ int main() {
   CHECK_CUDA(cudaMemcpy(h_y.data(), d_y, MATRIX_SIZE * sizeof(double),
                         cudaMemcpyDeviceToHost));
 
-  // printf("GPU first 10 result: \n");
-  // for (int i = 0; i < 10; i++) {
-  //   printf("%lf ", h_y[i] / NUM_EXECUTION);
-  // }
-  // printf("\n");
 
   error = 0.0;
   for (int i = 0; i < MATRIX_SIZE; i++) {
