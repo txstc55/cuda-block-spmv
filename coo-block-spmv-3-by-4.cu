@@ -311,7 +311,7 @@ int main() {
 
   double error = 0.0;
   for (int i = 0; i < MATRIX_SIZE; i++) {
-    error += abs(h_y[i] / NUM_EXECUTION - cpuResult[i]);
+    error += abs(h_y[i] / NUM_EXECUTION - trueResult[i]);
   }
   printf("Error for segmented with cpu: %f\n", error);
 
@@ -336,7 +336,7 @@ int main() {
 
   error = 0.0;
   for (int i = 0; i < MATRIX_SIZE; i++) {
-    error += abs(h_y[i] / NUM_EXECUTION - cpuResult[i]);
+    error += abs(h_y[i] / NUM_EXECUTION - trueResult[i]);
   }
   printf("Error for non segmented with cpu: %f\n", error);
 
