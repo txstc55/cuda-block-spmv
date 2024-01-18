@@ -313,7 +313,7 @@ int main() {
   for (int i = 0; i < MATRIX_SIZE; i++) {
     error += abs(h_y[i] / NUM_EXECUTION - trueResult[i]);
   }
-  printf("Error for segmented with cpu: %f\n", error);
+  printf("Error for segmented with true result: %f\n", error);
 
   // ===========================================================
   // the non segmented method
@@ -338,7 +338,7 @@ int main() {
   for (int i = 0; i < MATRIX_SIZE; i++) {
     error += abs(h_y[i] / NUM_EXECUTION - trueResult[i]);
   }
-  printf("Error for non segmented with cpu: %f\n", error);
+  printf("Error for non segmented with true result: %f\n", error);
 
   // Cleanup
   CHECK_CUDA(cudaFree(d_values));
